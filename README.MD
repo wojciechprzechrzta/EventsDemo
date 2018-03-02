@@ -5,5 +5,5 @@
 ## To run examples with generics events
 ./gradlew bootRun -Dspring.profiles.active=generic
 
-## To run examples of async event
-./gradlew bootRun -Dspring.profiles.active=generic
+## To run examples of async event handling
+./gradlew bootRun -Dspring.profiles.active=async
