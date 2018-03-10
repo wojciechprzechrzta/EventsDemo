@@ -1,6 +1,7 @@
 package com.przechu.eventsdemo;
 
 import com.przechu.eventsdemo.async.LogRollerPublisher;
+import com.przechu.eventsdemo.filter.MoneyTransferPublisher;
 import com.przechu.eventsdemo.generic.AgentPublisher;
 import com.przechu.eventsdemo.simple.GameTrigger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,8 @@ public class EventsDemoApplication implements CommandLineRunner {
     @Autowired(required = false)
     private LogRollerPublisher logRollerPublisher;
 
+    @Autowired(required = false)
+    private MoneyTransferPublisher bankSimulator;
 
     public static void main(String[] args) throws IOException {
         SpringApplication.run(EventsDemoApplication.class, args);
@@ -40,8 +43,12 @@ public class EventsDemoApplication implements CommandLineRunner {
             agent.start();
         }
 
-        if(logRollerPublisher != null){
+        if (logRollerPublisher != null) {
             logRollerPublisher.schedule();
+        }
+
+        if (bankSimulator != null) {
+            bankSimulator.simulateTransfers();
         }
 
     }
@@ -49,6 +56,6 @@ public class EventsDemoApplication implements CommandLineRunner {
     @Profile("async")
     @Configuration
     @EnableAsync
-    class  AsyncConfig {
+    class AsyncConfig {
     }
 }

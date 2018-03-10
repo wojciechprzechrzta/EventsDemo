@@ -7,3 +7,6 @@
 
 ## To run examples of async event handling
 ./gradlew bootRun -Dspring.profiles.active=async
+
+## TO run examples of event filtering
+./gradlew bootRun -Dspring.profiles.active=filter
